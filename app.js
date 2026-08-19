@@ -1,10 +1,12 @@
 import 'dotenv/config';
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const port = 8080;
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/colleges', async (req, res) => {
   const baseUrl = process.env.COLLEGE_API_BASE_URL;
