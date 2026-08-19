@@ -1,0 +1,23 @@
+{
+  "name": "college-launchpad-backend",
+  "version": "1.0.0",
+  "description": "backend for college launchpad",
+  "homepage": "https://github.com/Section33-ops/college-launchpad-backend#readme",
+  "bugs": {
+    "url": "https://github.com/Section33-ops/college-launchpad-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Section33-ops/college-launchpad-backend.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
