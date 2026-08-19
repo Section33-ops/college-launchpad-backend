@@ -30,7 +30,7 @@ app.get('/colleges', async (req, res) => {
         state: college.school.state,
       });
     });
-    res.json(colleges);
+    return res.json(colleges);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Could not fetch resource' });
