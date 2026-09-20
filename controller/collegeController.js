@@ -3,21 +3,22 @@ export const getColleges = async (req, res) => {
   const apiKey = process.env.COLLEGE_API_KEY;
   const colleges = [];
 
-  const { stateParam, cityParam } = req.query;
+  const { stateParam, cityParam, pageParam } = req.query;
 
-  function getUrl(baseUrl, apiKey, stateParam, cityParam) {
+  function getUrl(baseUrl, apiKey, stateParam, cityParam, pageParam) {
     const url = new URL(baseUrl);
     url.searchParams.set('api_key', apiKey);
 
     if (stateParam) url.searchParams.set('school.state', stateParam);
     if (cityParam) url.searchParams.set('school.city', cityParam);
+    if (pageParam) url.searchParams.set('page', pageParam);
 
     return url.toString();
   }
 
   try {
     const response = await fetch(
-      getUrl(baseUrl, apiKey, stateParam, cityParam),
+      getUrl(baseUrl, apiKey, stateParam, cityParam, pageParam),
     );
 
     if (!response.ok) {
