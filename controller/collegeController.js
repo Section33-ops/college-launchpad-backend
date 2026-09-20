@@ -5,26 +5,20 @@ export const getColleges = async (req, res) => {
 
   const { stateParam, cityParam } = req.query;
 
-  function getUrl() {
-    if (stateParam === undefined && cityParam === undefined) {
-      return `${baseUrl}?api_key=${apiKey}`;
-    }
+  function getUrl(baseUrl, apiKey, stateParam, cityParam) {
+    const url = new URL(baseUrl);
+    url.searchParams.set('api_key', apiKey);
 
-    if (stateParam && cityParam) {
-      return `${baseUrl}?api_key=${apiKey}&school.state=${stateParam}&school.city=${cityParam}`;
-    }
+    if (stateParam) url.searchParams.set('school.state', stateParam);
+    if (cityParam) url.searchParams.set('school.city', cityParam);
 
-    if (stateParam) {
-      return `${baseUrl}?api_key=${apiKey}&school.state=${stateParam}`;
-    }
-
-    if (cityParam) {
-      return `${baseUrl}?api_key=${apiKey}&school.city=${cityParam}`;
-    }
+    return url.toString();
   }
 
   try {
-    const response = await fetch(getUrl());
+    const response = await fetch(
+      getUrl(baseUrl, apiKey, stateParam, cityParam),
+    );
 
     if (!response.ok) {
       throw new Error('Could not fetch resource');
