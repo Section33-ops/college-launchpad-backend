@@ -41,7 +41,7 @@ export const getColleges = async (req, res) => {
         state: college.school.state,
       });
     });
-    return res.json(colleges);
+    return res.json({ metaData: data.metadata, colleges: colleges });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Could not fetch resource' });
